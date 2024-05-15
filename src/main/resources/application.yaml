@@ -1,0 +1,24 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: pet-store
+  threads:
+    virtual:
+      enabled: true
+  ai:
+    dashscope:
+      chat:
+        options:
+          model: qwen-plus
+          temperature: 0
+io:
+  github:
+    llmagentbuilder:
+      chatagent:
+        name: Pet Store
+        description: Pet Store
+        usageInstruction: What you want to do with pets in the store?
+        planner:
+          systemInstructions: |
+            Use tools to operate with pets.
