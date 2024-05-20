@@ -1,0 +1,6 @@
+version: '3'
+services:
+  petstore:
+    image: swaggerapi/petstore3
+    ports:
+      - "8088:8080"

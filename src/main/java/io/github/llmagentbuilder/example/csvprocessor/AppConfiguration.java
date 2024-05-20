@@ -7,19 +7,21 @@ import io.github.llmagentbuilder.tool.petstore.api.StoreApi;
 import io.github.llmagentbuilder.tool.petstore.api.StoreApiAgentToolConfiguration;
 import io.github.llmagentbuilder.tool.petstore.api.UserApi;
 import io.github.llmagentbuilder.tool.petstore.api.UserApiAgentToolConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
+@EnableConfigurationProperties(PetStoreConfiguration.class)
 @Import({PetApiAgentToolConfiguration.class,
     StoreApiAgentToolConfiguration.class, UserApiAgentToolConfiguration.class})
 public class AppConfiguration {
 
   @Bean
-  public ApiClient apiClient() {
+  public ApiClient apiClient(PetStoreConfiguration configuration) {
     ApiClient apiClient = new ApiClient();
-    apiClient.updateBaseUri("http://localhost:8082/api/v3");
+    apiClient.updateBaseUri(configuration.baseUrl());
     return apiClient;
   }
 
